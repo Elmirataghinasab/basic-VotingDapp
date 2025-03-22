@@ -1,66 +1,89 @@
-## Foundry
+# 🗳 VoteDApp
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## 🌟 Overview
+VoteDApp is a **decentralized voting application** built on Solidity, allowing users to vote on proposals using a custom ERC20 token. The contract ensures fairness by requiring users to hold a minimum balance of the token before participating in the vote. The voting process is time-bound, ensuring transparent decision-making.
 
-Foundry consists of:
+## ✨ Features
+✅ **Decentralized Voting** – Users vote using a tokenized voting power system.  
+✅ **Token-Based Participation** – Users must hold and transfer tokens to vote.  
+✅ **Owner-Restricted Election Process** – Only the contract owner can finalize the election.  
+✅ **Time-Limited Proposals** – Voting ends after a set deadline (**1 month**).  
+✅ **Secure & Transparent** – Prevents multiple voting attempts & ensures fairness.  
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+---
+## 📜 Smart Contract Details
 
-## Documentation
+### ⚠️ Errors
+❌ `VoteDApp_YouShouldHoldMoreVT` – User must hold more tokens to vote.  
+❌ `VoteDApp_YouHaveVotedBefore` – User has already voted.  
+❌ `VoteDApp_ParticipateFailed` – Token transfer failed.  
+❌ `VoteDApp_TheProposalIsStillGoingOn` – Voting period is not over.  
+❌ `VoteDApp_TheVotesAreEqualTryProposalAgain` – Votes are tied; proposal should be restarted.  
+❌ `VoteDApp_OnlyOwnerCanCallThisFunction` – Only the owner can execute specific functions.  
 
-https://book.getfoundry.sh/
+### 📢 Events
+📌 `userVoted(address user, bool vote)` – Logs a user’s vote.  
+📌 `ProposalEnded()` – Emitted when voting concludes.  
 
-## Usage
+### 📊 Contract Variables
+- 📈 `SupportVotes` – Number of support votes.  
+- 📉 `rejectionVotes` – Number of rejection votes.  
+- 🏆 `WINNER` – Stores the election result.  
+- 🔢 `DECIMALS` – Token decimal value.  
+- 👑 `OWNER` – The contract owner.  
+- ⏳ `DEADLINE` – Voting period (**1 month**).  
+- 🕰 `INITIALTIME` – Voting start time.  
 
-### Build
+---
+## ⚙️ Functions
+### 🗳 **Voting Functions**
+🔹 `participate(bool Vote)` – Allows users to vote by transferring tokens.  
+🔹 `election()` – Ends the voting process and determines the winner (**owner-only**).  
 
-```shell
-$ forge build
-```
+### 📡 **Getter Functions**
+🔍 `GetWinner()` – Returns the election result.  
+📊 `getSupportVotes()` – Retrieves support votes count.  
+📉 `getRejectionVotes()` – Retrieves rejection votes count.  
+👑 `GetOwner()` – Returns the contract owner.  
+🔢 `GetDecimal()` – Returns token decimal value.  
+🕰 `getInitialTime()` – Returns the voting start time.  
+⏳ `getDeadline()` – Returns the voting deadline.  
+🗂 `GetIfUserVoted(address user)` – Checks if a user has voted.  
 
-### Test
+---
+## 🚀 Installation & Deployment
+1. **Clone the Repository:**  
+   ```sh
+   git clone https://github.com/yourusername/VoteDApp.git
+   cd VoteDApp
+   ```
+2. **Install Foundry:**  
+   ```sh
+   curl -L https://foundry.paradigm.xyz | bash
+   foundryup
+   ```
+3. **Compile the Contract:**  
+   ```sh
+   forge build
+   ```
+4. **Run Tests:**  
+   ```sh
+   forge test
+   ```
+5. **Deploy to a Blockchain:**  
+   ```sh
+   forge create --rpc-url YOUR_RPC_URL --private-key YOUR_PRIVATE_KEY src/VoteDApp.sol:VoteDApp --constructor-args <TOKEN_ADDRESS>
+   ```
 
-```shell
-$ forge test
-```
+---
+## 🤝 Contributing
+Contributions are welcome! Please open an **issue** or submit a **pull request**.
 
-### Format
+---
+## 📜 License
+This project is licensed under the **MIT License**.
 
-```shell
-$ forge fmt
-```
+---
+## 📬 Contact
+For inquiries, reach out via **GitHub issues** or email: [your.email@example.com](mailto:your.email@example.com).
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
