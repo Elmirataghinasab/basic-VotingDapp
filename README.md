@@ -54,8 +54,8 @@ VoteDApp is a **decentralized voting application** built on Solidity, allowing u
 ## 🚀 Installation & Deployment
 1. **Clone the Repository:**  
    ```sh
-   git clone https://github.com/yourusername/VoteDApp.git
-   cd VoteDApp
+   git clone https://github.com/Elmirataghinasab/basic-VotingDapp.git
+   cd basic-VotingDapp
    ```
 2. **Install Foundry:**  
    ```sh
@@ -70,10 +70,6 @@ VoteDApp is a **decentralized voting application** built on Solidity, allowing u
    ```sh
    forge test
    ```
-5. **Deploy to a Blockchain:**  
-   ```sh
-   forge create --rpc-url YOUR_RPC_URL --private-key YOUR_PRIVATE_KEY src/VoteDApp.sol:VoteDApp --constructor-args <TOKEN_ADDRESS>
-   ```
 
 ---
 ## 🤝 Contributing
@@ -85,5 +81,5 @@ This project is licensed under the **MIT License**.
 
 ---
 ## 📬 Contact
-For inquiries, reach out via **GitHub issues** or email: [your.email@example.com](mailto:your.email@example.com).
+For inquiries, reach out via **GitHub issues** or email: [taghinasab8395@gmail.com](mailto:taghinasab8395@gmail.com).
 
