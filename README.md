@@ -58,6 +58,7 @@ VoteDApp is a **decentralized voting application** built on Solidity, allowing u
    cd basic-VotingDapp
    ```
 2. **Install Foundry:**  
+    if you want to run the tests
    ```sh
    curl -L https://foundry.paradigm.xyz | bash
    foundryup
